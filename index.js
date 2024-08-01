@@ -1,33 +1,34 @@
 // This one will be a little tricky. So check out this overview first: https://www.youtube.com/watch?v=sJ-c3BA-Ypo
 
-  let bankBranchInstance = {}// 1. Create a variable to store the singleton instance of the bank branch. "bankBranchInstance"
+  let bankBranchInstance = null// 1. Create a variable to store the singleton instance of the bank branch. "bankBranchInstance"
   class BankBranch // 2. Define a class called `BankBranch` for managing branch information.
 
    {
-    constructor (branchInfo){
-      if (bankBranchInstance === null) {
-        this.branchInfo = branchInfo;// if not , will create new instance to provided branchinfo
-        bankBranchInstance = this.branchInfo
+    constructor (branchInfo)//    - Create a constructor that takes `branchInfo` as a parameter.
+    {
+      if (bankBranchInstance === null) //- Inside the constructor, check if the `bankBranchInstance` variable is null (indicating no instance exists).
+        {
+        this.branchInfo = branchInfo;// if not , will create new instance to provided branchInfo
+        bankBranchInstance = this;
       }
       return bankBranchInstance // returns if there is an existing instance
     }
+    getBranchInfo()// 4. Add methods to the `BankBranch` class for managing branch-related information. For example, you can add a method like `getBranchInfo` to retrieve branch details.
+    {
+     return this.branchInfo ;
+    }
   }
-  
+ const branchA = new BankBranch("Bank Branch A information");//    - Create instances of the `BankBranch` class, such as `branchA` and `branchB`, with different branch information.
+ const branchB = new BankBranch("Bank Branch B information");//    - Create instances of the `BankBranch` class, such as `branchA` and `branchB`, with different branch information.
 
+ console.log (branchA.getBranchInfo());//- Use the `getBranchInfo` method to retrieve branch information from the instances.
+ console.log (branchB.getBranchInfo());
 
+ if (branchA===branchB)//- Verify that `branchA` and `branchB` are both referring to the same instance by comparing them using `===`.
 
-// 3. In the `BankBranch` class:
-//    - Create a constructor that takes `branchInfo` as a parameter.
-//    - Inside the constructor, check if the `bankBranchInstance` variable is null (indicating no instance exists).
-//    - If `bankBranchInstance` is null, create a new instance with the provided `branchInfo` and assign it to `bankBranchInstance`.
-//    - Return the `bankBranchInstance` whether it's newly created or existing.
-
-// 4. Add methods to the `BankBranch` class for managing branch-related information. For example, you can add a method like `getBranchInfo` to retrieve branch details.
-
-// 5. In the usage section:
-//    - Create instances of the `BankBranch` class, such as `branchA` and `branchB`, with different branch information.
-//    - Use the `getBranchInfo` method to retrieve branch information from the instances.
-//    - Verify that `branchA` and `branchB` are both referring to the same instance by comparing them using `===`.
+   {
+  console.log("Its true!")
+   }
 
 // This pseudo-code provides a step-by-step explanation of how to implement the Singleton Pattern for managing a single instance of the `BankBranch` class throughout the application, ensuring that multiple instances refer to the same object.
 
